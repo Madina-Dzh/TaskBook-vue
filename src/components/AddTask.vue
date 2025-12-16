@@ -1,5 +1,11 @@
 <script>
     export default {
+        props: {
+            changeInput: {
+                type: Function,
+                required: true
+            }
+        },
         data() {
             return {
                 // Объекты переменные
@@ -9,16 +15,14 @@
 </script>
 
 <template>
-        <input type="text">
-        <button>+</button>
-
+    <input type="text" @input="changeInput($event.target.value)">
+    <button>+</button>
 </template>
 
 <style scoped>
-input {
+    input {
         width: 500px;
         position: relative;
-        top: -50px;
         font-size: 1.2em;
         border-radius: 3px;
         border: 0;
@@ -30,7 +34,7 @@ input {
 
     button {
         position: relative;
-        top: -52px;
+        top: -2px;
         padding: 15px 20px;
         color: #fff;
         text-transform: uppercase;
@@ -42,5 +46,10 @@ input {
 
     button.fav-button {
         margin-left: 20px;
+    }
+
+    p {
+        position: relative;
+        top: -52px;
     }
 </style>
