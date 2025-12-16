@@ -11,7 +11,6 @@
     <div class="task">
         Текст задачи
         <div>
-            <button style="background-color: rgba(229, 255, 0, 0.399);">&#9998;</button>
             <button style="background-color: rgba(255, 0, 0, 0.425);">&#9249;</button>
         </div>
 

@@ -34,7 +34,7 @@
 <template>
   <h1>Task Book</h1>
   <AddTask :changeInput="changeInput" :addTask="addTask"/>
-  <p v-show="error != ''">{{error}}</p>
+  <p v-show="error != ''">{{error}}</p><br><br>
   <Task />
   <Task />
 </template>
