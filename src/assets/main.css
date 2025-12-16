@@ -5,6 +5,7 @@ body {
     background: rgb(83, 91, 180);
     background: linear-gradient(339deg, rgb(66, 208, 87) 0%, rgb(83, 57, 184) 100%);
     text-align: center;
+    font-family: sans-serif;
 }
 
 h1 {
