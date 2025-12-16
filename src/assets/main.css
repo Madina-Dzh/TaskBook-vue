@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Honk:MORF@15&display=swap');
+
+body {
+    min-height: 100vh;
+    background: rgb(83, 91, 180);
+    background: linear-gradient(339deg, rgb(66, 208, 87) 0%, rgb(83, 57, 184) 100%);
+    text-align: center;
+}
+
+h1 {
+    font-family: "Honk", system-ui;
+    margin-top: 100px;
+    font-size: 10em;
+}

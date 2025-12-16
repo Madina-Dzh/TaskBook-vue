@@ -1,8 +1,5 @@
 <script>
-import Task from './components/Task.vue'
-
 export default {
-  components: {Task},
   data() {
     return {
       // Объекты переменные
@@ -12,9 +9,7 @@ export default {
 </script>
 
 <template>
-  <h1>Task Book</h1>
-  <Task/>
-  <Task/>
+  <div class="task">Задача</div>
 </template>
 
 <style scoped>
