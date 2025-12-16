@@ -4,6 +4,10 @@
             changeInput: {
                 type: Function,
                 required: true
+            },
+            addTask: {
+                type: Function,
+                required: true
             }
         },
         data() {
@@ -16,7 +20,7 @@
 
 <template>
     <input type="text" @input="changeInput($event.target.value)">
-    <button>+</button>
+    <button @click="addTask()">+</button>
 </template>
 
 <style scoped>

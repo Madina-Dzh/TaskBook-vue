@@ -13,6 +13,19 @@
     methods: {
       changeInput(val) {
         this.inputTask = val
+      },
+      addTask() {
+        if (this.inputTask.length > 50) {
+          this.error = 'Слишком большой текст'
+          return
+        }
+        else if (this.inputTask.length <2) {
+          this.error = 'Введите хотя бы пару символов'
+          return
+        }
+        else {
+          this.error = ''
+        }
       }
     }
   }
@@ -20,8 +33,8 @@
 
 <template>
   <h1>Task Book</h1>
-  <AddTask :changeInput="changeInput"/>
-  <p>{{inputTask}}</p>
+  <AddTask :changeInput="changeInput" :addTask="addTask"/>
+  <p v-show="error != ''">{{error}}</p>
   <Task />
   <Task />
 </template>
