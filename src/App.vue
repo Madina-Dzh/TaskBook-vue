@@ -7,7 +7,8 @@
     data() {
       return {
         inputTask: '',
-        error: ''
+        error: '',
+        tasks: []
       }
     },
     methods: {
@@ -26,7 +27,15 @@
         else {
           this.error = ''
         }
+
+        this.tasks.push({
+          text: this.inputTask
+        })
+      },
+      deleteTask(index) {
+        this.tasks.splice(index, 1)
       }
+      
     }
   }
 </script>
@@ -35,8 +44,7 @@
   <h1>Task Book</h1>
   <AddTask :changeInput="changeInput" :addTask="addTask"/>
   <p v-show="error != ''">{{error}}</p><br><br>
-  <Task />
-  <Task />
+  <Task v-for="(el, index) in tasks" :key="index" :text="el.text" :deleteTask="deleteTask" :index="index"/>
 </template>
 
 <style scoped>

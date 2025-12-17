@@ -1,5 +1,19 @@
 <script>
     export default {
+        props: {
+            text: {
+                type: String,
+                required: true
+            },
+            deleteTask: {
+                type: Function,
+                required: true
+            },
+            index: {
+                type: Number,
+                required: true
+            }
+        },
         data() {
             return {
             }
@@ -9,9 +23,9 @@
 
 <template>
     <div class="task">
-        Текст задачи
+        {{text}}
         <div>
-            <button style="background-color: rgba(255, 0, 0, 0.425);">&#9249;</button>
+            <button @click="deleteTask(index)" style="background-color: rgba(255, 0, 0, 0.425);">&#9249;</button>
         </div>
 
     </div>
