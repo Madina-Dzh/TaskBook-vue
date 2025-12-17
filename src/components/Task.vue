@@ -16,15 +16,23 @@
         },
         data() {
             return {
+                completed: false
+            }
+        },
+        methods: {
+            markAsCompleted() {
+                this.completed = !this.completed;
             }
         }
     }
 </script>
 
 <template>
-    <div class="task">
+    <div class="task" :class="{task: true, completed: completed}">
         {{text}}
         <div>
+            <button v-if="completed == false" @click="markAsCompleted()" style="background-color: #40ff006c;">&#10004;</button>
+            <button v-else @click="markAsCompleted()" style="background-color: rgba(64, 255, 0, 0.425);">X</button>
             <button @click="deleteTask(index)" style="background-color: rgba(255, 0, 0, 0.425);">&#9249;</button>
         </div>
 
@@ -57,5 +65,14 @@
         border-radius: 10px;
         border: none;
         border: rgba(47, 52, 175, 0.421) solid 2px;
+    }
+
+    .task.completed {
+        background-color: rgba(255, 185, 192, 0.355);
+        text-decoration: line-through;
+    }
+
+    .task.completed span {
+        text-decoration: line-through;
     }
 </style>
