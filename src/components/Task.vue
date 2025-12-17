@@ -62,6 +62,7 @@
         width: 60px;
         font-size: 20px;
         margin-left: 5px;
+        cursor: pointer;
         border-radius: 10px;
         border: none;
         border: rgba(47, 52, 175, 0.421) solid 2px;
@@ -74,5 +75,9 @@
 
     .task.completed span {
         text-decoration: line-through;
+    }
+
+    .task:hover {
+        transform: scale(1.05);
     }
 </style>
