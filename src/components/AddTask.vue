@@ -19,8 +19,8 @@
 </script>
 
 <template>
-    <input type="text" @input="changeInput($event.target.value)">
-    <button @click="addTask()">+</button>
+    <input type="text" @input="changeInput($event.target.value)" ref="inputRef">
+    <button @click="addTask(); $refs.inputRef.value = ''">+</button>
 </template>
 
 <style scoped>
