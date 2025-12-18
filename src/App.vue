@@ -11,6 +11,15 @@
         tasks: []
       }
     },
+    mounted() {
+      const saved = localStorage.getItem('tasks')
+      if (saved) {
+        this.tasks = JSON.parse(saved)
+        console.log("Загружено из localStorage:", this.tasks)
+      } else {
+        console.log("Задачи не найдены в localStorage")
+      }
+    },
     methods: {
       changeInput(val) {
         this.inputTask = val
@@ -20,7 +29,7 @@
           this.error = 'Слишком большой текст'
           return
         }
-        else if (this.inputTask.length <2) {
+        else if (this.inputTask.length < 2) {
           this.error = 'Введите хотя бы пару символов'
           return
         }
@@ -31,9 +40,12 @@
         this.tasks.push({
           text: this.inputTask
         })
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        this.inputTask = ''
       },
       deleteTask(index) {
         this.tasks.splice(index, 1)
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
       }
     }
   }
@@ -41,9 +53,9 @@
 
 <template>
   <h1>Task Book</h1>
-  <AddTask :changeInput="changeInput" :addTask="addTask"/>
+  <AddTask :changeInput="changeInput" :addTask="addTask" />
   <p v-show="error != ''">{{error}}</p><br><br>
-  <Task v-for="(el, index) in tasks" :key="index" :text="el.text" :deleteTask="deleteTask" :index="index"/>
+  <Task v-for="(el, index) in tasks" :key="index" :text="el.text" :deleteTask="deleteTask" :index="index" />
 </template>
 
 <style scoped>
