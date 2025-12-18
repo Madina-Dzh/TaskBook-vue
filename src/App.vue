@@ -38,13 +38,20 @@
         }
 
         this.tasks.push({
-          text: this.inputTask
+          text: this.inputTask,
+          status: false
         })
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
         this.inputTask = ''
       },
       deleteTask(index) {
         this.tasks.splice(index, 1)
+        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        this.$forceUpdate()
+        location.reload()
+      },
+      setStatus(index, value) {
+        this.tasks[index].status = !this.tasks[index].status
         localStorage.setItem('tasks', JSON.stringify(this.tasks));
       }
     }
@@ -55,7 +62,7 @@
   <h1>Task Book</h1>
   <AddTask :changeInput="changeInput" :addTask="addTask" />
   <p v-show="error != ''">{{error}}</p><br><br>
-  <Task v-for="(el, index) in tasks" :key="index" :text="el.text" :deleteTask="deleteTask" :index="index" />
+  <Task v-for="(el, index) in tasks" :key="index" :text="el.text" :deleteTask="deleteTask" :index="index" :setStatus="setStatus" :status="this.tasks[index].status" />
 </template>
 
 <style scoped>

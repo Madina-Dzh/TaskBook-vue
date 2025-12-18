@@ -12,6 +12,10 @@
             index: {
                 type: Number,
                 required: true
+            },
+            setStatus: {
+                type: Function,
+                required: true
             }
         },
         data() {
@@ -19,9 +23,20 @@
                 completed: false
             }
         },
+        mounted() {
+            const saved = localStorage.getItem('tasks')
+            if (saved) {
+                this.tasks = JSON.parse(saved)
+                this.completed = this.tasks[this.index].status
+            }
+        },
         methods: {
             markAsCompleted() {
+                console.log(this.index)
+                console.log(this.completed)
                 this.completed = !this.completed;
+                this.setStatus(this.index, this.completed);
+                
             }
         }
     }
@@ -31,7 +46,8 @@
     <div class="task" :class="{task: true, completed: completed}">
         {{text}}
         <div>
-            <button v-if="completed == false" @click="markAsCompleted()" style="background-color: #40ff006c;">&#10004;</button>
+            <button v-if="completed == false" @click="markAsCompleted()"
+                style="background-color: #40ff006c;">&#10004;</button>
             <button v-else @click="markAsCompleted()" style="background-color: rgba(64, 255, 0, 0.425);">X</button>
             <button @click="deleteTask(index)" style="background-color: rgba(255, 0, 0, 0.425);">&#9249;</button>
         </div>
@@ -79,5 +95,6 @@
 
     .task:hover {
         transform: scale(1.05);
+        transition: transform(0.2s);
     }
 </style>
