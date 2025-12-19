@@ -1,9 +1,10 @@
 <script>
   import Task from './components/Task.vue'
   import AddTask from './components/AddTask.vue'
+  import Tabs from './components/Tabs.vue'
 
   export default {
-    components: { Task, AddTask },
+    components: { Task, AddTask, Tabs },
     data() {
       return {
         inputTask: '',
@@ -62,6 +63,7 @@
   <h1>Task Book</h1>
   <AddTask :changeInput="changeInput" :addTask="addTask" />
   <p v-show="error != ''">{{error}}</p><br><br>
+  <Tabs />
   <Task v-for="(el, index) in tasks" :key="index" :text="el.text" :deleteTask="deleteTask" :index="index" :setStatus="setStatus" :status="this.tasks[index].status" />
 </template>
 
