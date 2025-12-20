@@ -16,6 +16,10 @@
             setStatus: {
                 type: Function,
                 required: true
+            },
+            selectTask: {
+                type: Number,
+                required: true
             }
         },
         data() {
@@ -45,7 +49,7 @@
 <template>
     <div class="task" :class="{task: true, completed: completed}">
         {{text}}
-        <div>
+        <div v-show="selectTask === 0">
             <button v-if="completed == false" @click="markAsCompleted()"
                 style="background-color: #40ff006c;">&#10004;</button>
             <button v-else @click="markAsCompleted()" style="background-color: rgba(64, 255, 0, 0.425);">X</button>

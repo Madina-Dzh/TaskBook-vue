@@ -1,13 +1,18 @@
 <script>
     export default {
-
+        props: {
+            selectStatus: {
+                type: Function,
+                required: true
+            },
+        }
     }
 </script>
 
 <template>
-    <button>Все</button>
-    <button>Активные</button>
-    <button>Завершённые</button>
+    <button @click="selectStatus(0)">Все</button>
+    <button @click="selectStatus(1)">Активные</button>
+    <button @click="selectStatus(2)">Завершённые</button>
 </template>
 
 <style scoped>
