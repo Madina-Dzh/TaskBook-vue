@@ -76,7 +76,7 @@ export default {
   <h1>Task Book</h1>
   <AddTask :changeInput="changeInput" :addTask="addTask" />
   <p v-show="error != ''">{{ error }}</p><br /><br />
-  <Tabs :selectStatus="selectStatus" />
+  <Tabs :selectStatus="selectStatus" :selectTask="selectTask"/>
 
   <!-- Используем вычисляемое свойство для фильтрации задач -->
   <Task

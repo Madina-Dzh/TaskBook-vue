@@ -1,18 +1,33 @@
 <script>
-    export default {
-        props: {
-            selectStatus: {
-                type: Function,
-                required: true
-            },
+export default {
+    props: {
+        selectTask: {
+            type: Number,
+            required: true
+        },
+        selectStatus: {
+            type: Function,
+            required: true
+        }
+    },
+    computed: {
+        isSelected() {
+            return index => this.selectTask === index;
         }
     }
+}
 </script>
 
 <template>
-    <button @click="selectStatus(0)">Все</button>
-    <button @click="selectStatus(1)">Активные</button>
-    <button @click="selectStatus(2)">Завершённые</button>
+    <div>
+        <button v-for="(item, index) in ['Все', 'Активные', 'Завершённые']"
+                :key="index"
+                :class="{ selected: isSelected(index) }"
+                @click="selectStatus(index)"
+        >
+            {{ item }}
+        </button>
+    </div>
 </template>
 
 <style scoped>
@@ -27,6 +42,10 @@
         border-radius: 10px;
         border: none;
         border: rgba(47, 52, 175, 0.421) solid 2px;
+    }
+
+    .selected {
+        background-color: #DCDCDC !important;
     }
 
     button:active {
