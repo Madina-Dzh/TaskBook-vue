@@ -9,16 +9,20 @@
                 type: Function,
                 required: true
             },
-            index: {
-                type: Number,
-                required: true
-            },
             setStatus: {
                 type: Function,
                 required: true
             },
             selectTask: {
                 type: Number,
+                required: true
+            },
+            id: {
+                type: String,
+                required: true
+            },
+            status: {
+                type: Boolean,
                 required: true
             }
         },
@@ -27,20 +31,22 @@
                 completed: false
             }
         },
-        mounted() {
-            const saved = localStorage.getItem('tasks')
-            if (saved) {
-                this.tasks = JSON.parse(saved)
-                this.completed = this.tasks[this.index].status
-            }
-        },
         methods: {
             markAsCompleted() {
-                console.log(this.index)
-                console.log(this.completed)
-                this.completed = !this.completed;
-                this.setStatus(this.index, this.completed);
-                
+                //console.log(this.index)
+                //console.log(this.completed)
+                //this.completed = !this.completed;
+                //this.setStatus(this.index, this.completed);
+                this.completed = !this.status
+                this.setStatus(this.id, !this.status);
+            }
+        },
+        mounted() {
+            this.completed = this.status;
+        },
+        watch: {
+            status(newVal) {
+                this.completed = newVal;
             }
         }
     }
@@ -49,11 +55,11 @@
 <template>
     <div class="task" :class="{task: true, completed: completed}">
         {{text}}
-        <div v-show="selectTask === 0">
+        <div>
             <button v-if="completed == false" @click="markAsCompleted()"
                 style="background-color: #40ff006c;">&#10004;</button>
             <button v-else @click="markAsCompleted()" style="background-color: rgba(64, 255, 0, 0.425);">X</button>
-            <button @click="deleteTask(index)" style="background-color: rgba(255, 0, 0, 0.425);">&#9249;</button>
+            <button @click="deleteTask(id)" style="background-color: rgba(255, 0, 0, 0.425);">&#9249;</button>
         </div>
 
     </div>
